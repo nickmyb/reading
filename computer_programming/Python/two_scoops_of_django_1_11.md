@@ -9,7 +9,7 @@
 
 ## 1 Coding Style
 
-- [django coding style](docs.djangoproject.com/en/1.11/internals/contributing/writing-code/coding-style/)
+- [django coding style](https://docs.djangoproject.com/en/1.11/internals/contributing/writing-code/coding-style/)
 
 ### 1.1 The Importance of Making Your Code Readable
 
