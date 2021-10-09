@@ -45,3 +45,27 @@
 ### 1.9 Summary
 
 **遵循一致的编码风格**
+
+## 2 The Optimal Django Environment Setup
+
+### 2.1 Use the Same Database Engine Everywhere
+
+各个环境使用一致的数据库配置，并且不要依赖fixtures
+
+### 2.2 Use Pip and Virtualenv
+
+### 2.3 Install Django and Other Dependencies via Pip
+
+### 2.4 Use a Version Control System
+
+### 2.5 Optional: Identical Environments
+
+- 用Docker创建相同的环境
+    - [cookiecutter-django](cookiecutter-django.readthedocs.io/en/latest/
+    developing-locally-docker.html)
+    - [Real Python article on Django and Docker Compose](http://bit.ly/1dWnzVW)
+    - [dockerbook](dockerbook.com)
+
+### 2.6 Summary
+
+保持一致的环境设置
