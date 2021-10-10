@@ -61,10 +61,9 @@
 ### 2.5 Optional: Identical Environments
 
 - 用Docker创建相同的环境
-    - [cookiecutter-django](cookiecutter-django.readthedocs.io/en/latest/
-    developing-locally-docker.html)
+    - [cookiecutter-django](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html)
     - [Real Python article on Django and Docker Compose](http://bit.ly/1dWnzVW)
-    - [dockerbook](dockerbook.com)
+    - [dockerbook](https://dockerbook.com)
 
 ### 2.6 Summary
 
