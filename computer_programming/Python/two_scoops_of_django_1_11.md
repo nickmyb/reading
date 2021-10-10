@@ -68,3 +68,58 @@
 ### 2.6 Summary
 
 保持一致的环境设置
+
+## 3 How to Lay Out Django Projects
+
+- [cookiecutter-django](https://github.com/pydanny/cookiecutter-django)
+- [cookiecutters](https://djangopackages.org/grids/g/cookiecutters/)
+
+### 3.1 Django 1.11’s Default Project Layout
+
+### 3.2 Our Preferred Project Layout
+
+```
+<repository_root>/
+├── <configuration_root>/
+├── <django_project_root>/
+```
+
+### 3.3 Sample Project Layout
+
+```
+icecreamratings_project
+├── config/
+│   ├── settings/
+│   ├── __init__.py
+│   ├── urls.py
+│   └── wsgi.py
+├── docs/
+├── icecreamratings/
+│   ├── media/ # Development only!
+│   ├── products/
+│   ├── profiles/
+│   ├── ratings/
+│   ├── static/
+│   └── templates/
+├── .gitignore
+├── Makefile
+├── README.rst
+├── manage.py
+└── requirements.txt
+```
+
+### 3.4 What About the Virtualenv?
+
+不需要在版本控制添加.venv只要执行下列命令
+
+```
+$ pip freeze > requirements.txt
+```
+
+### 3.5 Going Beyond startproject
+
+- [cookiecutter-django](https://github.com/pydanny/cookiecutter-django)
+
+### 3.6 Summary
+
+推荐使用cookiecutter
