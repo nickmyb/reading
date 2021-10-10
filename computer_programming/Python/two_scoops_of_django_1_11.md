@@ -123,3 +123,54 @@ $ pip freeze > requirements.txt
 ### 3.6 Summary
 
 推荐使用cookiecutter
+
+## 4 Fundamentals of Django App Design
+
+### 4.1 The Golden Rule of Django App Design
+
+**each app should be tightly focused on its task**
+
+### 4.2 What to Name Your Django Apps
+
+应用程序名称推荐单个单词的复数形式，一般为主Model的复数形式，同时需要考虑到URL规则
+
+### 4.3 When in Doubt, Keep Apps Small
+
+### 4.4 What Modules Belong in an App?
+
+```
+# Common modules
+scoops/
+├── __init__.py
+├── admin.py
+├── forms.py
+├── management/
+├── migrations/
+├── models.py
+├── templatetags/
+├── tests/
+├── urls.py
+├── views.py
+
+# uncommon modules
+scoops/
+├── api/
+├── behaviors.py
+├── constants.py
+├── context_processors.py
+├── decorators.py
+├── db/
+├── exceptions.py
+├── fields.py
+├── factories.py
+├── helpers.py
+├── managers.py
+├── middleware.py
+├── signals.py
+├── utils.py
+├── viewmixins.py
+```
+
+### 4.5 Summary
+
+**It’s an art, not a science.**
