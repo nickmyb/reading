@@ -174,3 +174,54 @@ scoops/
 ### 4.5 Summary
 
 **It’s an art, not a science.**
+
+## 5 Settings and Requirements Files
+
+1. All settings files need to be version-controlled
+2. Don’t Repeat Yourself
+3. Keep secret keys safe
+
+### 5.1 Avoid Non-Versioned Local Settings
+
+### 5.2 Using Multiple Settings Files
+
+### 5.3 Separate Configuration From Code
+
+- 使用环境变量
+- settings中不要导入ImproperlyConfigured以外的Django Components
+- [多个settings时使用django-admin代替manage.py](https://docs.djangoproject.com/en/1.11/ref/django-admin/)
+
+### 5.4 When You Can’t Use Environment Variables
+
+- 不能使用环境变量时使用文件配置(JSON/.env/...)并加入到.gitignore
+
+### 5.5 Using Multiple Requirements Files
+
+为requirements.txt设置明确的版本号
+
+```
+requirements/
+├── base.txt
+├── local.txt
+├── staging.txt
+├── production.txt
+
+# requirements/base.txt
+Django==1.11.0
+psycopg2==2.6.2
+djangorestframework==3.4.0
+
+# requirements/local.txt
+-r base.txt # includes the base.txt requirements file
+
+coverage==4.2
+django-debug-toolbar==1.5
+```
+
+### 5.6 Handling File Paths in Settings
+
+**Don’t hardcode your paths!, pathlib or os**
+
+### 5.7 Summary
+
+分版本管理配置文件，使用环境变量来配置Secrets，其余内容都添加到版本控制
