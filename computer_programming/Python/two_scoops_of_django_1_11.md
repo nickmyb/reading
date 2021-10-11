@@ -383,4 +383,18 @@ HttpResponse = View.as_view()(HttpRequest)
 
 ### 8.7 Don’t Use locals() as Views Context
 
-#### 8.8 Summary
+### 8.8 Summary
+
+## 9 BestPractices for Function-Based Views
+
+### 9.1 Advantages of FBVs
+
+### 9.2 Passing the HttpRequest Object
+
+### 9.3 Decorators Are Sweet
+
+### 9.4 Passing the HttpResponse Object
+
+### 9.5 Summary
+
+考虑使用装饰器来抽取FBV中重复的逻辑
