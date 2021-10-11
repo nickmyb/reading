@@ -354,3 +354,33 @@ def fun_function(name=None):
 ### 7.8 Summary
 
 多使用ORM
+
+## 8 Function- And Class-Based Views
+
+### 8.1 When to Use FBVs or CBVs
+
+### 8.2 Keep View Logic Out of URLConfs
+
+### 8.3 Stick to Loose Coupling in URLConfs
+
+### 8.4 Use URL Namespaces
+
+```
+urlpatterns += [
+    url(r'^tastings/', include('tastings.urls', namespace='tastings')),
+]
+```
+
+### 8.5 Try to Keep Business Logic Out of Views
+
+### 8.6 Django Views Are Functions
+
+```
+HttpResponse = view(HttpRequest)
+
+HttpResponse = View.as_view()(HttpRequest)
+```
+
+### 8.7 Don’t Use locals() as Views Context
+
+#### 8.8 Summary
