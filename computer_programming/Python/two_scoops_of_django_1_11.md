@@ -398,3 +398,29 @@ HttpResponse = View.as_view()(HttpRequest)
 ### 9.5 Summary
 
 考虑使用装饰器来抽取FBV中重复的逻辑
+
+## 10 BestPractices for Class-Based Views
+
+- [django-braces](https://github.com/brack3t/django-braces)
+
+### 10.1 Guidelines When Working With CBVs
+
+- [Classy Class-Based Views](http://ccbv.co.uk/)
+
+### 10.2 Using Mixins With CBVs
+
+### 10.3 Which Django GCBV Should Be Used for What Task?
+
+### 10.4 General Tips for Django CBVs
+
+### 10.5 How GCBVs and Forms Fit Together
+
+### 10.6 Using Just django.views.generic.View
+
+### 10.7 Additional Resources
+
+- [CBV](https://docs.djangoproject.com/en/1.11/topics/class-based-views/)
+- django-extra-views
+- django-vanilla-views
+
+### 10.8 Summary
