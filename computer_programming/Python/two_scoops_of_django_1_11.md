@@ -424,3 +424,19 @@ HttpResponse = View.as_view()(HttpRequest)
 - django-vanilla-views
 
 ### 10.8 Summary
+
+## 11 Common Patterns for Forms
+
+### 11.1 Pattern 1: Simple ModelForm With Default Validators
+
+### 11.2 Pattern 2: Custom Form Field Validators in ModelForms
+
+### 11.3 Pattern 3: Overriding the Clean Stage of Validation
+
+### 11.4 Pattern 4: Hacking Form Fields (2 CBVs, 2 Forms, 1 Model)
+
+### 11.5 Pattern 5: Reusable Search Mixin View
+
+### 11.6 Summary
+
+对于Form fields验证的一些最佳实践
