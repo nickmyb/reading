@@ -302,3 +302,55 @@ managers
 ### 6.7 Understanding Fat Models
 
 - 通过Mixins和辅助函数将数据相关方法封装到Models
+
+## 7 Queries and the Database Layer
+
+### 7.1 Use get_object_or_404() for Single Objects
+
+- 只在View相关中使用
+
+### 7.2 Be Careful With Queries That Might Throw Exceptions
+
+- ObjectDoesNotExist可用于所有Models
+- DoesNotExist需要前缀具体Model,SpecificModel.DoesNotExist
+- SpecificModel.MultipleObjectsReturned
+
+### 7.3 Use Lazy Evaluation to Make Queries Legible
+
+```
+# Django ORM只有在最后取值时才会进行SQL调用,可以将查询分解为多行
+def fun_function(name=None):
+    """Find working ice cream promo"""
+    results = Promo.objects.active()
+    results = results.filter(
+        Q(name__startswith=name) | Q(description__icontains=name)
+            )
+    results = results.exclude(status='melted')
+    results = results.select_related('flavors')
+    return results
+```
+
+### 7.4 Lean on Advanced Query Tools
+
+- 尽量使用ORM相关数据工具并且避免通过Python遍历QuerySet来处理数据
+
+### 7.5 Don’t Drop Down to Raw SQL Until It’s Necessary
+
+### 7.6 Add Indexes as Needed
+
+- 索引
+    - 索引被频繁使用
+    - 索引确实起到效果
+- 添加方式
+    - db_index=True
+    - Meta.indexes
+
+### 7.7 Transactions
+
+- 对数据库有写操作的时候使用事务
+- 对django.http.StreamingHttpResponse使用事务无效
+- [transactions](https://docs.djangoproject.com/en/1.11/topics/db/transactions/)
+
+### 7.8 Summary
+
+多使用ORM
