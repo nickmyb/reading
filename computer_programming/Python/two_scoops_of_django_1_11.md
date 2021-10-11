@@ -225,3 +225,80 @@ django-debug-toolbar==1.5
 ### 5.7 Summary
 
 分版本管理配置文件，使用环境变量来配置Secrets，其余内容都添加到版本控制
+
+## 6 Model Best Practices
+
+- django-model-utils
+- django-extensions
+
+### 6.1 Basics
+
+- 控制每个app包含5个左右的models，否则尝试分解apps
+
+- [model-inheritance](https://docs.djangoproject.com/en/1.11/topics/db/models/#model-inheritance)
+- 只有在重复字段多时才使用抽象基类
+- proxy models偶尔有用
+- 避免multi-table inheritance(为父类model也创建了表)
+
+```
+from django.db import models
+
+
+class TimeStampedModel(models.Model):
+    """
+    An abstract base class model that provides selfupdating ``gmt_create`` and ``gmt_modified`` fields.
+    """
+    gmt_create = models.DateTimeField(auto_now_add=True)
+    gmt_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+```
+
+### 6.2 Database Migrations
+
+- **always backup before migrations**
+- [RunPython before RunSQL](https://docs.djangoproject.com/en/3.2/ref/migration-operations/)
+
+### 6.3 Overcoming Common Obstacles of RunPython
+
+- 读取Custom Model Manager
+    - `use_in_migrations = True` to our custom
+managers
+- 读取Custom Model Method
+    - 迁移时无法调用任何method
+- Use RunPython.noop to Do Nothing
+- 迁移
+    - 备份
+    - 测试
+    - 回滚
+
+### 6.4 Django Model Design
+
+- Cache Before Denormalizing
+- null
+    - 数据库NULL
+- blank
+    - form widget input = ""
+- 设置blank的时候需要同时设置null为True
+- 二进制数据
+    - BinaryField
+    - 更好的选择是使用文件
+    - database speed < file speed
+- 避免使用Generic Relations
+- Choices(可以使用Enum)
+
+### 6.5 The Model _meta API
+
+- [_meta](https://docs.djangoproject.com/en/1.11/ref/models/meta/)
+- 和Model的字段相关的可以考虑使用_meta
+
+### 6.6 Model Managers
+
+- Model inheritance中只有抽象父类的Manager会被继承,具体父类的不会被继承
+- 父类的Model Managers会被作为Model的第一个Manager
+- 把objects = models.Manager()设置在自定义Manager之上
+
+### 6.7 Understanding Fat Models
+
+- 通过Mixins和辅助函数将数据相关方法封装到Models
