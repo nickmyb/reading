@@ -469,3 +469,48 @@ HttpResponse = View.as_view()(HttpRequest)
 
 - TODO
     - 自己debug一下django form的整个数据链路
+
+## 13 Templates: Best Practices
+
+### 13.1 Keep Templates Mostly in templates/
+
+### 13.2 Template Architecture Patterns
+
+```
+templates/
+├── base.html
+├── dashboard.html # extends base.html
+├── profiles/
+├────── profile_detail.html # extends base.html
+├────── profile_form.html # extends base.html
+
+templates/
+├── base.html
+├── dashboard.html # extends base.html
+├── profiles/
+├────── base_profiles.html # extends base.html
+├────── profile_detail.html # extends base_profiles.html
+├────── profile_form.html # extends base_profiles.html
+```
+
+### 13.3 Limit Processing in Templates
+
+- templates只传入被处理后需要展示的部分数据
+- 涉及外键时使用select_related,否则会有额外的数据库查询
+- 尽量不要在template中调用对象的方法来处理image和API这些隐含的调用
+
+### 13.4 Don’t Bother Making Your Generated HTML Pretty
+
+### 13.5 Exploring Template Inheritance
+
+### 13.6 block.super Gives the Power of Control
+
+### 13.7 Useful Things to Consider
+
+### 13.8 Error Page Templates
+
+- [github styleguide](https://styleguide.github.com/)
+
+### 13.9 Follow a Minimalist Approach
+
+### 13.10 Summary
