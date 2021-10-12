@@ -657,3 +657,44 @@ flavors/
 - [Custom User django-authtools](https://github.com/fusionbox/django-authtools)
 
 ### 20.3 Summary
+
+## 21 Django’s Secret Sauce: Third-Party Packages
+
+### 21.1 Examples of Third-Party Packages
+
+### 21.2 Know About the Python Package Index
+
+### 21.3 Know About DjangoPackages.org
+
+### 21.4 Know Your Resources
+
+### 21.5 Tools for Installing and Managing Packages
+
+### 21.6 Package Requirements
+
+### 21.7 Wiring Up Django Packages: The Basics
+
+### 21.8 Troubleshooting Third-Party Packages
+
+### 21.9 Releasing Your Own Django Packages
+
+### 21.10 What Makes a Good Django Package?
+
+### 21.11 Creating Your Own Packages the Easy Way
+
+```
+# Only if you haven't installed cookiecutter yet
+$ pip install cookiecutter
+
+# Creating a Django Package from scratch
+$ cookiecutter https://github.com/pydanny/cookiecutter-djangopackage.git
+
+# Creating a Python Package from scratch
+$ cookiecutter https://github.com/audreyr/cookiecutter-pypackage.git
+```
+
+### 21.12 Maintaining Your Open Source Package
+
+### 21.13 Additional Reading
+
+### 21.14 Summary
