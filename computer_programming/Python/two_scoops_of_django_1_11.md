@@ -514,3 +514,15 @@ templates/
 ### 13.9 Follow a Minimalist Approach
 
 ### 13.10 Summary
+
+## 14 Template Tags and Filters
+
+### 14.1 Filters Are Functions
+
+### 14.2 Custom Template Tags
+
+### 14.3 Naming Your Template Tag Libraries
+
+### 14.4 Loading Your Template Tag Modules
+
+### 14.5 Summary
