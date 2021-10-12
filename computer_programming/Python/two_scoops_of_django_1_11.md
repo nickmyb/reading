@@ -440,3 +440,32 @@ HttpResponse = View.as_view()(HttpRequest)
 ### 11.6 Summary
 
 对于Form fields验证的一些最佳实践
+
+## 12 Form Fundamentals
+
+### 12.1 Validate All Incoming Data With Django Forms
+
+### 12.2 Use the POST Method in HTML Forms
+
+### 12.3 Always Use CSRF Protection With HTTP Forms That Modify Data
+
+- [CSRF](https://tech.meituan.com/2018/10/11/fe-security-csrf.html)
+
+### 12.4 Understand How to Add Django Form Instance Attributes
+
+### 12.5 Know How Form Validation Works
+
+- ModelForm Data Is Saved to the Form, Then the Model Instance
+
+### 12.6 Add Errors to Forms With Form.add_error()
+
+### 12.7 Fields Without Pre-Made Widgets
+
+### 12.8 Customizing Widgets
+
+### 12.9 Additional Resources
+
+### 12.10 Summary
+
+- TODO
+    - 自己debug一下django form的整个数据链路
