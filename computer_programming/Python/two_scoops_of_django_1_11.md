@@ -593,3 +593,23 @@ flavors/
 ### 16.8 Additional Reading
 
 ### 16.9 Summary
+
+## 17 Consuming REST APIs
+
+### 17.1 Learn How to Debug the Client
+
+### 17.2 Consider Using JavaScript-Powered Static Asset Preprocessors
+
+### 17.3 Real-Time Woes a.k.a. Latency
+
+### 17.4 Avoid the Anti-Patterns
+
+- [test 4 javascript](https://stackoverflow.com/questions/300855/javascript-unit-test-tools-for-tdd)
+
+### 17.5 AJAX and the CSRF Token
+
+### 17.6 Improving JavaScript Skills
+
+### 17.7 Follow JavaScript Coding Standards
+
+### 17.8 Summary
