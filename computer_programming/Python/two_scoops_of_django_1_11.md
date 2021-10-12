@@ -526,3 +526,15 @@ templates/
 ### 14.4 Loading Your Template Tag Modules
 
 ### 14.5 Summary
+
+## 15 Django Templates and Jinja2
+
+### 15.1 What’s the Syntactical Difference?
+
+### 15.2 Should I Switch?
+
+### 15.3 Considerations When Using Jinja2 With Django
+
+### 15.4 Resources
+
+### 15.5 Summary
