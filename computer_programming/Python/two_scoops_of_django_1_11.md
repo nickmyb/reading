@@ -647,3 +647,13 @@ flavors/
 ### 19.9 Securing the Admin Docs
 
 ### 19.10 Summary
+
+## 20 Dealing With the User Model
+
+### 20.1 Use Django’s Tools for Finding the User Model
+
+### 20.2 Custom User Fields for Django 1.11 Projects
+
+- [Custom User django-authtools](https://github.com/fusionbox/django-authtools)
+
+### 20.3 Summary
