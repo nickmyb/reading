@@ -538,3 +538,58 @@ templates/
 ### 15.4 Resources
 
 ### 15.5 Summary
+
+## 16 Building REST APIs With Django REST Framework
+
+### 16.1 Fundamentals of Basic REST API Design
+
+- [status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+
+### 16.2 Illustrating Design Concepts With a Simple API
+
+- [Classy Django REST Framework](https://www.cdrf.co/)
+
+### 16.3 REST API Architecture
+
+```
+直接创建apivX的app
+
+flavors/
+├── api/
+│    ├── __init__.py
+│    ├── authentication.py
+│    ├── parsers.py
+│    ├── permissions.py
+│    ├── renderers.py
+│    ├── serializers.py
+│    ├── validators.py
+│    ├── views.py
+│    ├── viewsets.py
+
+flavors/
+├── api/
+│    ├── __init__.py
+│    ├── ...
+│    ├── views.py
+│    │    ├── flavor.py
+│    │    ├── ingredient.py
+│    ├── viewsets.py
+```
+
+- 通过添加core/apivX_urls.py来绑定多个APIView
+- 文档化权限验证方案
+
+### 16.4 When DRF Gets in the Way
+
+- 逻辑复杂时使用基础的APIView
+- 将API进行拆分
+
+### 16.5 Shutting Down an External API
+
+### 16.6 Rate-Limiting Your API
+
+### 16.7 Advertising Your REST API
+
+### 16.8 Additional Reading
+
+### 16.9 Summary
