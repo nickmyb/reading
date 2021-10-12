@@ -625,3 +625,25 @@ flavors/
 ### 18.4 Summary
 
 尽可能的使用Django的基础组件，有足够可信的理由支撑再尝试替换
+
+## 19 Working With the Django Admin
+
+### 19.1 It’s Not for End Users
+
+### 19.2 Admin Customization vs. New Views
+
+### 19.3 Viewing String Representations of Objects
+
+### 19.4 Adding Callables to ModelAdmin Classes
+
+### 19.5 Be Aware of the Complications of Multiuser Environments
+
+### 19.6 Django’s Admin Documentation Generator
+
+### 19.7 Using Custom Skins With the Django Admin
+
+### 19.8 Secure the Django Admin
+
+### 19.9 Securing the Admin Docs
+
+### 19.10 Summary
