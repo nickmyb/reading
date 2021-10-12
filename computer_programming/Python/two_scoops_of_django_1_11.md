@@ -613,3 +613,15 @@ flavors/
 ### 17.7 Follow JavaScript Coding Standards
 
 ### 17.8 Summary
+
+## 18 Tradeoffs of Replacing Core Components
+
+### 18.1 The Temptation to Build FrankenDjango
+
+### 18.2 Non-Relational Databases vs. Relational Databases
+
+### 18.3 What About Replacing the Django Template Language?
+
+### 18.4 Summary
+
+尽可能的使用Django的基础组件，有足够可信的理由支撑再尝试替换
