@@ -776,3 +776,15 @@ flavors/
 ### 24.9 Other Resources
 
 ### 24.10 Summary
+
+## 25 Asynchronous Task Queues
+
+### 25.1 Do We Need a Task Queue?
+
+### 25.2 Choosing Task Queue Software
+
+### 25.3 Best Practices for Task Queues
+
+### 25.4 Resources for Task Queues
+
+### 25.5 Summary
