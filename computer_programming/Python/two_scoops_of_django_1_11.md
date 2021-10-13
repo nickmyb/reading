@@ -854,3 +854,28 @@ flavors/
 ### 26.30 Keep Up-to-Date on General Security Practices
 
 ### 26.31 Summary
+
+## 27 Logging: What’s It For, Anyway?
+
+### 27.1 Application Logs vs. Other Logs
+
+### 27.2 Why Bother With Logging?
+
+### 27.3 When to Use Each Log Level
+
+### 27.4 Log Tracebacks When Catching Exceptions
+
+### 27.5 One Logger Per Module That Uses Logging
+
+### 27.6 Log Locally to Rotating Files
+
+- logrotate
+- logging.handlers.WatchedFileHandler
+
+### 27.7 Other Logging Tips
+
+### 27.8 Necessary Reading Material
+
+### 27.9 Useful Third-Party Tools
+
+### 27.10 Summary
