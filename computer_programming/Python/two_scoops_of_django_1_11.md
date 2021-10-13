@@ -749,3 +749,30 @@ flavors/
 ### 23.6 Wikis and Other Documentation Methods
 
 ### 23.7 Summary
+
+## 24 Finding and Reducing Bottlenecks
+
+### 24.1 Should You Even Care?
+
+### 24.2 Speed Up Query-Heavy Pages
+
+- [django-debug-toolbar](https://github.com/jazzband/django-debug-toolbar)
+- [django-cache-panel](https://github.com/lincolnloop/django-cache-panel)
+- [django-extensions](https://github.com/django-extensions/django-extensions)
+- [silk](https://github.com/jazzband/django-silk)
+
+### 24.3 Get the Most Out of Your Database
+
+### 24.4 Cache Queries With Memcached or Redis
+
+### 24.5 Identify Specific Places to Cache
+
+### 24.6 Consider Third-Party Caching Packages
+
+### 24.7 Compression and Minification of HTML, CSS, and JavaScript
+
+### 24.8 Use Upstream Caching or a Content Delivery Network
+
+### 24.9 Other Resources
+
+### 24.10 Summary
