@@ -733,3 +733,19 @@ flavors/
 ### 22.10 Alternatives to unittest
 
 ### 22.11 Summary
+
+## 23 Documentation: Be Obsessed
+
+### 23.1 Use reStructuredText for Python Docs
+
+### 23.2 Use Sphinx to Generate Documentation From reStructuredText
+
+### 23.3 What Docs Should Django Projects Contain?
+
+### 23.4 Additional Documentation Resources
+
+### 23.5 The Markdown Alternative
+
+### 23.6 Wikis and Other Documentation Methods
+
+### 23.7 Summary
