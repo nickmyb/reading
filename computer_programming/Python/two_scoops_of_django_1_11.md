@@ -901,3 +901,11 @@ flavors/
 ### 29.5 Serializers and Deserializers
 
 ### 29.6 Summary
+
+## 30 Deployment: Platforms as a Service
+
+### 30.1 Evaluating a PaaS
+
+### 30.2 Best Practices for Deploying to PaaS
+
+### 30.3 Summary
