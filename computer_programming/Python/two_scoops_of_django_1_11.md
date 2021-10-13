@@ -788,3 +788,69 @@ flavors/
 ### 25.4 Resources for Task Queues
 
 ### 25.5 Summary
+
+## 26 Security Best Practices
+
+### 26.1 Reference Security Sections in Other Chapters
+
+### 26.2 Harden Your Servers
+
+### 26.3 Know Django’s Security Features
+
+### 26.4 Turn Off DEBUG Mode in Production
+
+### 26.5 Keep Your Secret Keys Secret
+
+### 26.6 HTTPS Everywhere
+
+- [免费HTTPS证书](https://letsencrypt.org/)
+
+### 26.7 Use Allowed Hosts Validation
+
+### 26.8 Always Use CSRF Protection With HTTP Forms That Modify Data
+
+### 26.9 Prevent Against Cross-Site Scripting (XSS) Attacks
+
+### 26.10 Defend Against Python Code Injection Attacks
+
+### 26.11 Validate All Incoming Data With Django Forms
+
+### 26.12 Disable the Autocomplete on Payment Fields
+
+### 26.13 Handle User-Uploaded Files Carefully
+
+### 26.14 Don’t Use ModelForms.Meta.exclude
+
+### 26.15 Don’t Use ModelForms.Meta.fields = "__all__"
+
+### 26.16 Beware of SQL Injection Attacks
+
+### 26.17 Never Store Credit Card Data
+
+### 26.18 Monitor Your Sites
+
+### 26.19 Keep Your Dependencies Up-to-Date
+
+### 26.20 Prevent Clickjacking
+
+### 26.21 Guard Against XML Bombing With defusedxml
+
+### 26.22 Explore Two-Factor Authentication
+
+### 26.23 Embrace SecurityMiddleware
+
+### 26.24 Force the Use of Strong Passwords
+
+### 26.25 Give Your Site a Security Checkup
+
+### 26.26 Put Up a Vulnerability Reporting Page
+
+### 26.27 Never Display Sequential Primary Keys
+
+### 26.28 Reference Our Security Settings Appendix
+
+### 26.29 Review the List of Security Packages
+
+### 26.30 Keep Up-to-Date on General Security Practices
+
+### 26.31 Summary
