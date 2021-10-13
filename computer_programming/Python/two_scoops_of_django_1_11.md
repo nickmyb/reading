@@ -698,3 +698,38 @@ $ cookiecutter https://github.com/audreyr/cookiecutter-pypackage.git
 ### 21.13 Additional Reading
 
 ### 21.14 Summary
+
+## 22 Testing Stinks and Is a Waste of Money!
+
+### 22.1 Testing Saves Money, Jobs, and Lives
+
+- [coverage.py](https://coverage.readthedocs.io/en/6.0.2/)
+
+### 22.2 How to Structure Tests
+
+```
+flavors/
+├── tests/
+│    ├── __init__.py
+│    ├── test_forms.py
+│    ├── test_models.py
+│    ├── test_views.py
+```
+
+### 22.3 How to Write Unit Tests
+
+### 22.4 What About Integration Tests?
+
+### 22.5 Continuous Integration
+
+### 22.6 Who Cares? We Don’t Have Time for Tests!
+
+### 22.7 The Game of Test Coverage
+
+### 22.8 Setting Up the Test Coverage Game
+
+### 22.9 Playing the Game of Test Coverage
+
+### 22.10 Alternatives to unittest
+
+### 22.11 Summary
