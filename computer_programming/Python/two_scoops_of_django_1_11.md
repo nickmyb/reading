@@ -879,3 +879,11 @@ flavors/
 ### 27.9 Useful Third-Party Tools
 
 ### 27.10 Summary
+
+## 28 Signals: Use Cases and Avoidance Techniques
+
+### 28.1 When to Use and Avoid Signals
+
+### 28.2 Signal Avoidance Techniques
+
+### 28.3 Summary
