@@ -887,3 +887,17 @@ flavors/
 ### 28.2 Signal Avoidance Techniques
 
 ### 28.3 Summary
+
+## 29 What About Those Random Utilities?
+
+### 29.1 Create a Core App for Your Utilities
+
+### 29.2 Optimize Apps With Utility Modules
+
+### 29.3 Django’s Own Swiss Army Knife
+
+### 29.4 Exceptions
+
+### 29.5 Serializers and Deserializers
+
+### 29.6 Summary
