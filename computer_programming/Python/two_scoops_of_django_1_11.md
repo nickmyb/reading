@@ -967,3 +967,5 @@ flavors/
 ### 34.4 Insider Tip: Be Active in the Community
 
 ### 34.5 Summary
+
+## 35 Closing Thoughts
