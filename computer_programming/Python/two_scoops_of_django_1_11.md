@@ -909,3 +909,27 @@ flavors/
 ### 30.2 Best Practices for Deploying to PaaS
 
 ### 30.3 Summary
+
+## 31 Deploying Django Projects
+
+### 31.1 Single-Server for Small Projects
+
+### 31.2 Multi-Server for Medium to Large Projects
+
+### 31.3 WSGI Application Servers
+
+### 31.4 Performance and Tuning: uWSGI and Gunicorn
+
+### 31.5 Stability and Ease of Setup: Gunicorn and Apache
+
+### 31.6 Common Apache Gotchas
+
+### 31.7 Automated, Repeatable Deployments
+
+### 31.8 Which Automation Tool Should Be Used?
+
+### 31.9 Current Infrastructure Automation Tools
+
+### 31.10 Other Resources
+
+### 31.11 Summary
