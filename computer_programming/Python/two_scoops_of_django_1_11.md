@@ -945,3 +945,13 @@ flavors/
 ### 32.4 Additional Resources
 
 ### 32.5 Summary
+
+## 33 The Art of Debugging
+
+### 33.1 Debugging in Development
+
+### 33.2 Debugging Production Systems
+
+### 33.3 Feature Flags
+
+### 33.4 Summary
