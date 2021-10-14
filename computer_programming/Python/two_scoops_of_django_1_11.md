@@ -933,3 +933,15 @@ flavors/
 ### 31.10 Other Resources
 
 ### 31.11 Summary
+
+## 32 Continuous Integration
+
+### 32.1 Principles of Continuous Integration
+
+### 32.2 Tools for Continuously Integrating Your Project
+
+### 32.3 Continuous Integration as a Service
+
+### 32.4 Additional Resources
+
+### 32.5 Summary
