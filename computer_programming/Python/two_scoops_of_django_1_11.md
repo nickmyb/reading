@@ -955,3 +955,15 @@ flavors/
 ### 33.3 Feature Flags
 
 ### 33.4 Summary
+
+## 34 Where and How to Ask Django Questions
+
+### 34.1 What to Do When You’re Stuck
+
+### 34.2 How to Ask Great Django Questions in IRC
+
+### 34.3 Feed Your Brain
+
+### 34.4 Insider Tip: Be Active in the Community
+
+### 34.5 Summary
