@@ -117,3 +117,13 @@ function str2u(str) {
 - 格式化检测
 - function + '' / function.toString()
     - 只能检测替换的格式化文件,chrome formatted无法检测
+
+## 7 AST抽象语法树的原理与实现
+
+### 7.1 理解AST抽象语法树
+
+### 7.2 词法分析
+
+### 7.3 语法分析
+
+### 7.4 Babel编译步骤
