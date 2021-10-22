@@ -71,3 +71,49 @@
 - 控制流平坦化 switch case
 - 位数不固定的结果可能只利用其中一位作为比对使用
 - 手动还原混淆是真的很累
+
+## 6 JS代码安全防护原理
+
+### 6.1 常量的混淆原理
+
+- object.attribute / object['attribute']
+- x ^ y ^ y = x
+
+```
+// hex替换字符串
+function str2Hex(str) {
+    for (var ret = [], i = 0, s; i < str.length; i++) {
+        s = "\\x" + str.charCodeAt(i).toString(16)
+        ret += s
+    }
+    return ret
+}
+
+// unicode替换字符串
+function str2u(str) {
+    var ret = ''
+    for (var i = 0; i < str.length; i++) {
+        ret += "\\u" + ("0000" + parseInt(str.charCodeAt(i)).toString(16)).substr(-4)
+        return ret
+    }
+}
+
+// str.charCodeAt(index)
+// String.fromCharCode(indexArray)
+```
+
+### 6.2 增加JS逆向者的工作量
+
+- ""['constructor']['fromCharCode'] = String.fromCharCode
+- jsfuck根据()分段处理
+
+### 6.3 代码执行流程的防护原理
+
+- flatten
+- , 返回最后一个表达式的结果
+
+### 6.4 其他代码防护方案
+
+- 格式化检测
+- function + '' / function.toString()
+    - 只能检测替换的格式化文件,chrome formatted无法检测
