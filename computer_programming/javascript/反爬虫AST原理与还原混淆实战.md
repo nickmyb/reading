@@ -298,3 +298,37 @@ fs.writeFile('./demoNew.js', code, (err) => {});
 - constantViolations: 变量修改 referencePaths: 变量引用
 - binding.scope.traverse: 一般使用binding.scope.traverse替代path.scope.traverse
 - scope.rename & scope.generateUidIdentifier
+
+## 9 AST自动化JS防护方案
+
+### 9.1 混淆前的代码处理
+
+- 改变对象属性的访问方式 MemberExpression
+- 内置对象 window["..."]
+
+### 9.2 常量与标识符的混淆
+
+- value = value ^ cipher ^ cipher
+- 字符串 加入 加解密函数处理
+- 将字符串抽取到数组中,并打乱顺序在执行前还原
+- 乱序字符串的函数中实现十六进制字符串
+    - code = code.replace(/\\\\x/g, '\\x')
+- 区分局部变量
+- Path对象会实时更新,node不会,可以额外进行一次ast转代码再解析为ast
+- 进制转换
+
+### 9.3 代码块的混淆
+
+- BinaryExpression转花指令
+- eval 代码加密 + trailingComments
+- 标识符处理后再进行eval处理,并且处理时要注意原始代码中的eval&Function
+
+### 9.4 完整的代码与处理后的效果
+
+### 9.5 代码执行逻辑的混淆
+
+- 控制流平坦化
+- 逗号表达式
+    - 变量全作为参数
+    - 逗号表达式的最后一个参数为返回值
+    - 一般单独处理逗号表达式
