@@ -332,3 +332,22 @@ fs.writeFile('./demoNew.js', code, (err) => {});
     - 变量全作为参数
     - 逗号表达式的最后一个参数为返回值
     - 一般单独处理逗号表达式
+
+## 10 AST自动化JS还原方案
+
+### 10.1 常用还原方案
+
+### 10.2 Chrome拓展开发入门
+
+### 10.3 JS Hook
+
+### 10.4 DOM对象的Hook
+
+### 10.5 原型链
+
+- obj: __proto__ -> 构造函数的prototype
+- function: prototype
+
+### 10.6 XHR Hook
+
+### 10.7 JS Hook的检测
