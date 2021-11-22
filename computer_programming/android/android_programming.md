@@ -85,3 +85,45 @@ private fun functionName(variableName: VariableType) {
 - px,pt,mm,in
 - dp: density-independent pixel
 - sp: scale-independent pixel
+
+## 3 activity的生命周期
+
+### 3.1 旋转GeoQuiz应用
+
+- 旋转GeoQuiz应用后应用再次显示第一题
+
+### 3.2 activity状态与生命周期回调
+
+```
+Nonexistent
+onCreate onDestroy
+对象实例在内存
+Stopped
+onStart onStop
+视图部分或全部可见
+Paused
+onResume onPause
+用户与当前activity交互
+Resumed
+```
+
+- 避免手动调用activity生命周期函数
+
+### 3.4 activity生命周期如何响应用户操作
+
+- 设备旋转会改变设备配置
+    - 可能会有更合适的资源来匹配新的配置
+    - 系统会调用 onDestroy + onCreate
+- 设备处于水平方向
+    - res/layout-land
+- FrameLayout不负责子视图的位置
+    - FrameLayout子视图位置取决于andorid:layout_gravity
+    - FrameLayout的直接子视图需要设置andorid:layout_gravity
+
+#### 3.6 深入学习: UI刷新与多窗口模式
+
+- onStart -> onStop的可见生命周期都应该刷新UI
+- multi-resume
+    - 完全可见的activity都将处于运行状态
+    - AndroidManifest.xml
+        - <meta-data android:name="andorid.allow_multiple_resumed_activities" android:value="true" />
