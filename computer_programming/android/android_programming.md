@@ -60,3 +60,28 @@
 - aapt2: Android Asset Packaging Tool
 - 手动编译
     - ./gradlew tasks
+
+## 2 Android与MVC设计模式
+
+### 2.3 更新视图层
+
+- xmlns:tools="http://schemas.android.com/tools"
+    - tools:text
+        - 预览时tools属性覆盖部件属性,设备上运行时忽略tools属性
+
+```
+// 函数定义
+private fun functionName(variableName: VariableType) {
+    // TODO
+}
+```
+
+### 2.5 添加图标资源
+
+- app/src/main/res/drawable-...
+
+### 2.6 屏幕像素密度
+
+- px,pt,mm,in
+- dp: density-independent pixel
+- sp: scale-independent pixel
