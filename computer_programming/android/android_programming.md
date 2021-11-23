@@ -167,3 +167,16 @@ Resumed
 ### 4.5 深入学习: Jetpack、AndroidX与架构组件
 
 - Jetpack库(Google官网出品的一套开发库)都在androidx开头的包里
+
+## 5 Android应用的调试
+
+- Log.d(TAG, "nickmyb", Exception())
+
+### 5.2 Android特有的调试工具
+
+- Android Lint
+    - Analyze -> Inspect Code
+- 重新编译整个项目
+    - Build - Clean Project
+- Tools - Layout Inspector
+- View - Tool Windows - Profiler
