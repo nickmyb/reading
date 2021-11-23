@@ -127,3 +127,43 @@ Resumed
     - 完全可见的activity都将处于运行状态
     - AndroidManifest.xml
         - <meta-data android:name="andorid.allow_multiple_resumed_activities" android:value="true" />
+
+## 4 UI状态的保存与恢复
+
+### 4.1 引入ViewModel依赖
+
+- app/build.gradle
+    - File - Sync Project with Gradle Files
+
+### 4.2 添加ViewModel
+
+- onDestroy -> activity.isFinishing: true(用户结束)/false(正在被系统销毁), true时ViewModel才会被销毁
+
+- ViewModel
+    - init: 创建
+    - onCleared: 销毁前
+
+### 4.3 进程销毁时保存数据
+
+- 操作系统销毁应用进程时,会直接清除整个应用进程,并且不会调用生命周期的回调函数
+- saved instance state
+    - Acitivity.onSaveInstanceState(Bundle)
+    - 用于恢复被系统回收的未结束activity
+    - *未结束使用*的activity进入停止状态时调用(onStop调用完成后,onDestroy调用完成前)
+    - 手动点击back也不会触发
+    - 手动调用finish不会触发
+    - Developer options - Apps - Dont't keey activities
+    - onSaveInstanceState保存暂存数据,onStop保存永久性数据
+
+### 4.4 ViewModel与保存实例状态
+
+- ViewModel
+    - 擅长处理耗时操作
+- onSaveInstanceState
+    - 进程消亡
+    - 需要序列化磁盘,需要避免大对象
+    - lifecycle-viewmodel-savedstate: 进程消亡也能保存数据
+
+### 4.5 深入学习: Jetpack、AndroidX与架构组件
+
+- Jetpack库(Google官网出品的一套开发库)都在androidx开头的包里
