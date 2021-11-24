@@ -180,3 +180,22 @@ Resumed
     - Build - Clean Project
 - Tools - Layout Inspector
 - View - Tool Windows - Profiler
+
+## 6 第二个activity
+
+### 6.2 启动activity
+
+- Activity -> startActivity -> ActivityManager -> 创建Activity Instance & onCreate
+- Intent
+    - component(activity， service, braodcast receiver, content provider)与操作系统通信的媒介工具
+- companion object
+    - static method
+
+### 6.3 activity间的数据传递
+
+- startActivityForResult
+- setResult
+    - 没有调用setResult,按back会收到RESULT_CANCELED
+- back
+    - onActivityResult(requestCode, resultCode, intent)
+- startActivity启动新activity后ViewModel会调用onCleared被销毁,isFinishing状态也是false
