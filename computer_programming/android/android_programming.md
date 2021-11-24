@@ -199,3 +199,9 @@ Resumed
 - back
     - onActivityResult(requestCode, resultCode, intent)
 - startActivity启动新activity后ViewModel会调用onCleared被销毁,isFinishing状态也是false
+
+## 7 Android SDK 版本与兼容
+
+- Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+- jetpack向后兼容
+- onStart -> onActivityResult -> onResume
