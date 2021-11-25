@@ -205,3 +205,22 @@ Resumed
 - Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 - jetpack向后兼容
 - onStart -> onActivityResult -> onResume
+
+## 8 UI fragment 与 fragment管理器
+
+- onCreate / onCreateView
+- 监听器可以再用户交互,设备选择,视图恢复导致数据重置时触发
+- 视图状态在onCreateView后onStart前恢复
+    - 避免beforeTextChanged和afterTextChanged在视图状态改变时被调用
+    - TextWatcher在onStart中注册
+- fragment自己无法在屏幕上显示视图
+- 托管UI fragment
+    - activity布局中为fragment安排位置
+    - 管理fragment实例生命周期
+- Activity -> FragmentManager -> FragmentTransaction & Fragment
+- 设备旋转或回收内存时,fragment队列会被保持
+- 生命周期
+    - activity的生命周期由操作系统调用
+    - fragment的生命周期由于托管activity的FragmentManager调用
+    - 操作系统并不知道fragment
+- fragment会尽量与activity保持一致
