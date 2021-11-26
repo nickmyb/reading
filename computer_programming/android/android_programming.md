@@ -252,3 +252,29 @@ Resumed
 - ConstraintLayout: 添加约束,将widget向指定方向拉
 - theme & style
 - blueprint - guideline
+
+## 11 数据库与Room库
+
+### 11.2 创建数据库
+
+- 定义实体 -> 表结构
+    - @Entity & @PrimaryKey
+- 创建数据库类
+    - 实体类需要和数据库关联
+    - @Database
+- 创建类型转换器
+    - TypeConverter
+- 定义数据库访问对象
+    - @Dao
+    - @Query
+- Application.onCreate
+    - 应用程序实例在应用启动后创建,应用进程被销毁时销毁
+- View - Tool Windows - Device File Explorer - chmod 777
+- 主线程(UI线程)
+    - 所有耗时操作都应该在后台线程完成
+    - UI只能在主线程更新
+- LiveData
+    - 不同模块之间传递数据
+- LifecycleOwner
+- fragment & fragment视图的生命周期
+- Application,单例活的久,但不适合做永久存储,存储共享数据
