@@ -224,3 +224,24 @@ Resumed
     - fragment的生命周期由于托管activity的FragmentManager调用
     - 操作系统并不知道fragment
 - fragment会尽量与activity保持一致
+
+## 9 使用RecyclerView显示列表
+
+- ViewModel生命周期与fragment
+    - fragment视图还在屏幕,ViewModel一直处于活动,即时发生旋转
+    - 当前fragment被销毁或替换,关联ViewModel会被销毁
+    - fragment事务添加到回退栈,即使fragment被替换,关联ViewModel也不会被销毁
+
+- RecyclerView需要LayoutManager来安排位置
+- RecycleView仅限于回收和摆放View
+- 列表项View显示数据需要配合ViewHolder和Adapter
+- ViewHolder.itemView
+- Adapter
+    - 创建ViewHolder
+    - 绑定ViewHolder到模型层数据
+- RecyclerView
+    - 请Adapter创建ViewHolder
+    - 请Adapter绑定ViewHolder到模型层数据
+- onCreateView中关联RecyclerView和adapter
+- onCreateViewHolder调用会比onBindViewHolder少的多
+- adapter和viewholder尽量分离
