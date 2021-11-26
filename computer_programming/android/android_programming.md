@@ -245,3 +245,10 @@ Resumed
 - onCreateView中关联RecyclerView和adapter
 - onCreateViewHolder调用会比onBindViewHolder少的多
 - adapter和viewholder尽量分离
+
+## 10 使用布局与部件创建用户界面
+
+- 嵌套布局难以维护并且影响性能,减少嵌套能缩短布局绘制时间
+- ConstraintLayout: 添加约束,将widget向指定方向拉
+- theme & style
+- blueprint - guideline
