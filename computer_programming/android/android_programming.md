@@ -278,3 +278,18 @@ Resumed
 - LifecycleOwner
 - fragment & fragment视图的生命周期
 - Application,单例活的久,但不适合做永久存储,存储共享数据
+
+## 12 Fragment Navigation
+
+### 12.1 单Activity多Fragment
+
+#### 12.1.1 Fragment回调接口
+
+- Fragment中定义Callbacks接口
+    - onAttach
+    - onDetach
+- 托管Activity实现Callbacks
+- addToBackStack(就是activity的堆栈)
+- fragment argument传递数据
+    - Fragment.setArguments(Bundle)
+    - 创建fragment后添加给activity前
