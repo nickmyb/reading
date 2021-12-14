@@ -582,3 +582,290 @@ func lissajous(out io.Writer, cycles int) {
 ```
 
 ### 1.8 本章要点
+
+## 2 程序结构
+
+### 2.1 命名
+
+- [字母_][字母数字_]*
+- 首字母大写才是包外可见
+- 驼峰
+- 缩略词保留大写
+
+### 2.2 声明
+
+- var const type func
+
+### 2.3 变量
+
+- var name type = expression
+    - omit type
+    - omit expression -> value zero
+- := 简短变量声明,函数内部才可以使用,若是外部词法域声明的变量会新声明一个变量
+    - 变量: 可寻址的值, *p: 变量的别名
+    - new(T) = *T
+        - 预定义函数,可以被同名变量覆盖
+        - 类型为空可能返回相同地址, struct{} & [0]int
+    - )另起一行缩进可以在前一行末尾增加,
+    - 一个变量的有效周期只取决于是否可达
+
+### 2.4 赋值
+
+- i++: 语句不是表达式
+- v, ok = m[key] x.(T) <-ch
+- v = m[key] x.(T) <-ch
+    - x.(T) -> panic, m[key] <-ch 返回零值
+- ==: 第二个值必须是对第一个值类型对应的变量是可赋值的，反之亦然
+
+### 2.5 类型
+
+- 只有当两个类型的底层基础类型相同时才允许转型,转换只改变类型而不会影响值本身
+- 类型相同才可以比较
+- 命名类型还可以为该类型的值定义新的行为
+    - type Celsius float64
+    - func (c Celsius) String() string { return fmt.Sprintf("%g°C", c) }
+
+### 2.6 包和文件
+
+```
+// 练习 2.1
+// demo/main.go
+package main
+
+import (
+	"nickmyb.com/demo/tempconv"
+	"fmt"
+)
+
+func main() {
+	var k tempconv.Kelvin = tempconv.CToK(12)
+	fmt.Println(k)
+}
+```
+
+```
+// demo/go.mod
+module nickmyb.com/demo
+
+go 1.17
+```
+
+```
+// demo/tempconv/conv.go
+// Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
+// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+// See page 41.
+
+//!+
+
+package tempconv
+
+// CToF converts a Celsius temperature to Fahrenheit.
+func CToF(c Celsius) Fahrenheit { return Fahrenheit(c*9/5 + 32) }
+
+// FToC converts a Fahrenheit temperature to Celsius.
+func FToC(f Fahrenheit) Celsius { return Celsius((f - 32) * 5 / 9) }
+
+// CToK converts a Celsius temperature to Kelvin.
+func CToK(c Celsius) Kelvin { return Kelvin(c) }
+
+// KToC converts a Kelvin temperature to Celsius.
+func KToC(k Kelvin) Celsius { return Celsius(k) }
+
+//!-
+```
+
+```
+// demo/tempconv/tempconv.go
+// Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
+// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+//!+
+
+// Package tempconv performs Celsius and Fahrenheit conversions.
+package tempconv
+
+import "fmt"
+
+type Celsius float64
+type Fahrenheit float64
+type Kelvin float64
+
+const (
+	AbsoluteZeroC Celsius = -273.15
+	FreezingC     Celsius = 0
+	BoilingC      Celsius = 100
+)
+
+func (c Celsius) String() string    { return fmt.Sprintf("%g°C", c) }
+func (f Fahrenheit) String() string { return fmt.Sprintf("%g°F", f) }
+func (k Kelvin) String() string     { return fmt.Sprintf("%g°K", k) }
+
+//!-
+```
+
+- import "${go.mod.module}/${package}
+
+```
+// 练习 2.2
+package main
+
+import (
+	"flag"
+	"fmt"
+	"os"
+	"strconv"
+)
+
+type Foot float64
+type Meter float64
+type Pound float64
+type Kilogram float64
+
+func MToF(m Meter) Foot {
+	return Foot(m * 3.2808)
+}
+
+func FToM(m Foot) Meter {
+	return Meter(m / 3.2808)
+}
+
+func KToP(k Kilogram) Pound {
+	return Pound(k * 2.2046)
+}
+
+func PToK(p Pound) Kilogram {
+	return Kilogram(p / 2.2046)
+}
+
+func (m Meter) String() string {
+	return fmt.Sprintf("%g M", m)
+}
+
+func (f Foot) String() string {
+	return fmt.Sprintf("%g F", f)
+}
+
+func (p Pound) String() string {
+	return fmt.Sprintf("%g lb", p)
+}
+
+func (k Kilogram) String() string {
+	return fmt.Sprintf("%g kg", k)
+}
+
+func main() {
+	length := flag.Bool("l", false, "length conversions")
+	weight := flag.Bool("w", false, "weight conversions")
+
+	flag.Parse()
+
+	if len(os.Args) < 3 {
+		fmt.Println("param missed")
+		os.Exit(1)
+	}
+	arg := os.Args[2]
+	n, err := strconv.ParseFloat(arg, 64)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "n: %v\n", err)
+		os.Exit(1)
+	}
+
+	switch {
+	case *length:
+		m := Meter(n)
+		f := Foot(n)
+		fmt.Printf("%s = %s, %s = %s\n", m, MToF(m), f, FToM(f))
+	case *weight:
+		k := Kilogram(n)
+		p := Pound(n)
+		fmt.Printf("%s = %s, %s = %s\n", k, KToP(k), p, PToK(p))
+	default:
+		fmt.Println("--help")
+	}
+}
+```
+
+- 包的初始化首先是解决包级变量的依赖顺序，然后按照包级变量声明出现的顺序依次初始化
+- init初始化函数不能被调用或引用，在程序开始执行时按照它们声明的顺序被自动调用
+- 每个包在解决依赖的前提下，以导入声明的顺序初始化，每个包只会被初始化一次
+- init() / 匿名函数初始化
+
+```
+// 练习 2.3
+// 重写PopCount函数，用一个循环代替单一的表达式。比较两个版本的性能。（11.4节将展示如何系统地比较两个不同实现的性能。）
+// TODO
+package popcount
+
+// pc[i] is the population count of i.
+var pc [256]byte
+
+func init() {
+	for i := range pc {
+		pc[i] = pc[i/2] + byte(i&1)
+	}
+}
+
+// PopCount returns the population count (number of set bits) of x.
+func PopCount(x uint64) int {
+	var ret byte
+	for i := 0; i < 8; i++ {
+		ret += pc[byte(x>>(i*8))]
+	}
+	return int(ret)
+}
+```
+
+```
+// 练习 2.4
+// 用移位算法重写PopCount函数，每次测试最右边的1bit，然后统计总数。比较和查表算法的性能差异。
+// TODO
+```
+
+```
+// 练习 2.5
+//  表达式x&(x-1)用于将x的最低的一个非零的bit位清零。使用这个算法重写PopCount函数，然后比较性能。
+// TODO
+```
+
+### 2.7 作用域
+
+- 词法块
+
+```
+// 这段有点坑
+func main() {
+    x := "hello!"
+    for i := 0; i < len(x); i++ {
+        x := x[i]
+        if x != '!' {
+            x := x + 'A' - 'a'
+            fmt.Printf("%c", x) // "HELLO" (one letter per iteration)
+        }
+    }
+}
+```
+
+```
+// Go语言的习惯是在if中处理错误然后直接返回，这样可以确保正常执行的语句不需要代码缩进
+f, err := os.Open(fname)
+if err != nil {
+    return err
+}
+f.ReadByte()
+f.Close()
+```
+
+```
+var cwd string
+
+func init() {
+	// cwd, err := os.Getwd() // NOTE: wrong!
+    var err error
+    cwd, err = os.Getwd()
+    if err != nil {
+        log.Fatalf("os.Getwd failed: %v", err)
+    }
+}
+```
