@@ -869,3 +869,74 @@ func init() {
     }
 }
 ```
+
+## 3 基础数据类型
+
+### 3.1 整型
+
+- (u)int[8|16|32|64]: 有无符号, x bit
+- (u)int: 对应特定CPU平台机器字大小, 32/64bit
+- rune <=> int32, byte <=> uint8
+- uintptr: 没有指定具体的bit大小但是足以容纳指针
+- 使用无符号数进行左移右移
+	- 有符号数的右移运算会用符号位的值填充左边空缺的bit位
+	- 无符号数左移右移都是填充0
+
+### 3.2 浮点数
+
+- 一般使用float64
+
+```
+// 练习 3.1 - 3.4
+// TODO
+```
+
+### 3.3 复数
+
+- complex[64|128] -> float[32|64]
+- complex real imag
+- math/cmplx
+
+```
+// 练习 3.5 - 3.9
+// TODO
+```
+
+### 3.4 布尔型
+
+- 优先级 && > ||
+
+### 3.5 字符串
+
+- 字符串: 指针 + len
+- 字符串是一个不可改变的字节序列,可以包含byte=0
+- len: 字节数目（不是rune字符数目）
+- s[i]返回第i个字节的字节值
+- s[7:] & s 共享相同内存
+- \ooo 255 <= \377
+- \xhh
+- ``: 没有转义操作 "`" = "0x60"
+- code point: rune = int32
+- UTF-8: 变长字节序列
+- unicode/utf8
+- 码点大于256 "\uhhhh" "\Uhhhhhhhh"
+- 码点小于256 \xhh
+- []rune(s) string([]rune) string(int)
+- packages: bytes strings strconv unicode
+
+```
+// 练习 3.10 - 3.12
+// TODO
+```
+
+### 3.6 常量
+
+- 常量在编译期就确定
+- const iota
+
+```
+// 练习 3.13
+// TODO
+```
+
+- 无类型常量
