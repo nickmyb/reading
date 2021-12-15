@@ -940,3 +940,117 @@ func init() {
 ```
 
 - 无类型常量
+
+## 4 复合数据类型
+
+### 4.1 数组
+
+- var r [3]int = [3]int{1, 2}  // r[2] = 0
+- r := [...]int{99: -1}
+
+```
+func zero(ptr *[32]byte) {
+	// for i, v := range ptr {
+    for i := range ptr {
+        ptr[i] = 0
+    }
+}
+```
+
+```
+// 练习 4.1 - 4.2
+// TODO
+```
+
+### 4.2 Slice
+
+- []T: data: 指向第一个slice元素的指针 len cap
+- slice拓展不超过cap即可
+- == 不能比较slice,只能比较nil
+- bytes.Equal可以比较[]byte
+- slice的元素是间接引用的,[]interface{}时slice的元素可以是自身,slice扩容就会导致其本身的值/地址变化
+- []int{} make([]int, 3)[3:] []int(nil)
+- make([]T, len, cap)
+
+#### 4.2.1 append函数
+
+- x = append(x, x...)
+- copy
+
+```
+// 练习 4.3 - 4.7
+// TODO
+```
+
+### 4.3 Map
+
+- map[K]V, k需要支持==,不建议使用浮点数作为k
+- make(map[string]int) / map[string]int{}
+- 不存在的k返回零值
+- delete(ages, "alice")
+- 禁止对v的取址操作: &m[k], 元素增长可能分配更大空间使之前地址无效
+- map写入数据前需要先make
+
+```
+// map equal
+func equal(x, y map[string]int) bool {
+    if len(x) != len(y) {
+        return false
+    }
+    for k, xv := range x {
+        if yv, ok := y[k]; !ok || yv != xv {
+            return false
+        }
+    }
+    return true
+}
+```
+
+- 对于k为slice类似不支持==的类型,使用辅助函数转可比较类型(string, struce, int, [n]T)确保一一对应即可
+
+```
+// 练习 4.8 - 4.9
+// TODO
+```
+
+### 4.4 结构体
+
+- structAddress.Positio = (*structAddress).Positio
+- 调用函数返回的是值,赋值语句左边需要是一个变量
+- 成员顺序不同的结构体是不同的
+- 结构体不能包含自身类型的成员但可以包含自身指针的成员
+- 注意结构体的未导出成员
+
+```
+package p
+type T struct{ a, b int } // a and b are not exported
+
+package q
+import "p"
+var _ = p.T{a: 1, b: 2} // compile error: can't reference a, b
+var _ = p.T{1, 2}       // compile error: can't reference a, b
+```
+
+- 结构体的所有成员可以比较结构体就可以比较
+- 结构体匿名成员只声明类型(命名的类型或指向一个命名的类型的指针),可以省略匿名成员部分路径(匿名成员需要导出),外层的结构体不仅仅是获得了匿名成员类型的所有成员，而且也获得了该类型导出的全部的方法
+- 结构体初始化}换行前需要添加,
+
+### 4.5 JSON
+
+- 只有导出的结构体成员才会被编码
+- Tag: \`json:"color,omitempty"\`
+- json.Marshal[Indent]
+
+```
+// 练习 4.10 - 4.13
+// TODO
+```
+
+### 4.6 文本和HTML模板
+
+- TODO
+
+```
+// 练习 4.14
+// TODO
+```
