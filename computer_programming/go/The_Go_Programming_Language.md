@@ -1172,3 +1172,47 @@ func name(parameter-list) (result-list) {
 // 练习 5.19
 // TODO
 ```
+
+## 6 方法
+
+### 6.1 方法声明
+
+- func (p Point) Distance(q Point) float64
+- method & field不能同名
+- 同一个包内命名类型的底层类型不是指针或者interface就可以定义方法
+
+### 6.2 基于指针对象的方法
+
+- 如果类有一个指针作为接收器的方法那么所有方法都必须有一个指针接收器
+- 如果接收器是类型的变量并且其方法需要一个类型指针作为接收器,可以直接使用类型`变量`调用(struct field, array&slice element...)
+- 可以用类型指针调用类型方法
+- 类型方法会对实参进行拷贝
+
+```
+func GetFunctionName(i interface{}) string {
+	return runtime.FuncForPC(reflect.ValueOf(i).Pointer()).Name()
+}
+```
+
+### 6.3 通过嵌入结构体来扩展类型
+
+- 结构体可以拥有嵌入结构体所拥有的方法,可理解为结构体匿名成员的语法糖
+
+### 6.4 方法值和方法表达式
+
+- obj.F
+- T.F
+
+### 6.5 示例: Bit数组
+
+- .调用方法时才会自动补全&/*,直接使用是不会自动补的
+
+```
+// 练习 6.1 - 6.5
+// TODO
+```
+
+### 6.6 封装
+
+- 最小的封装单元是package
+- 在命名一个getter方法时通常会省略掉Get前缀
