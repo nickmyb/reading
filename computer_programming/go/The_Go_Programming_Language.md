@@ -1216,3 +1216,112 @@ func GetFunctionName(i interface{}) string {
 
 - 最小的封装单元是package
 - 在命名一个getter方法时通常会省略掉Get前缀
+
+## 7 接口
+
+### 7.1 接口约定
+
+```
+type Stringer interface {
+    String() string
+}
+```
+
+### 7.2 接口类型
+
+```
+type ReadWriteCloser interface {
+    Reader
+    Writer
+    Closer
+}
+```
+
+```
+// 练习 7.4 - 7.5
+// TODO
+```
+
+### 7.3 实现接口的条件
+
+- T类型的值不拥有所有*T指针的方法
+- 可以将任意一个值赋给interface{}
+- 需要的时候定义一个新的抽象或者特定特点的组不需要修改具体类型的定义
+
+```
+// 断言说明类型实现接口
+var w io.Writer = new(bytes.Buffer)
+
+var _ io.Writer = (*bytes.Buffer)(nil)
+```
+
+### 7.4 flag.Value接口
+
+```
+// 练习 7.6 - 7.7
+// TODO
+```
+
+### 7.5 接口值
+
+- interface的变量: type & value
+- 接口值支持==
+- nil interface & interface has nil value
+	- 声明时使用interface不要使用具体的类型
+
+### 7.6 sort.Interface接口
+
+```
+// 练习 7.8 - 7.10
+// TODO
+```
+
+### 7.7 http.Handler接口
+
+### 7.8 error接口
+
+### 7.9 示例: 表达式求值
+
+```
+// 练习 7.13 - 7.16
+// TODO
+```
+
+### 7.10 类型断言
+
+- v := x.(T) / v, ok := x.(T): x为接口类型,T为类型,检查动态类型是否和断言的类型匹配
+	- T: 具体类型,相当于强转为T
+	- T: 接口类型,type改变,value不变,通常T会使x的接口范围扩大
+	- x = nil,断言都会失败
+	- ok = false时,v为T的零值
+
+### 7.11 基于类型断言区别错误类型
+
+### 7.12 通过类型断言询问行为
+
+```
+func writeString(w io.Writer, s string) (n int, err error) {
+    type stringWriter interface {
+        WriteString(string) (n int, err error)
+    }
+    if sw, ok := w.(stringWriter); ok {
+        return sw.WriteString(s) // avoid a copy
+    }
+    return w.Write([]byte(s)) // allocate temporary copy
+}
+```
+
+### 7.13 类型分支
+
+- switch x.(type)
+
+```
+// 练习 7.117 - 7.18
+// TODO
+```
+
+### 7.14 示例: 基于标记的XML解码
+
+### 7.15 一些建议
+
+- 接口只有当有两个或两个以上的具体类型必须以相同的方式进行处理时才需要
