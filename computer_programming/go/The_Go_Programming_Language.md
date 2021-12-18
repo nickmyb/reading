@@ -1316,7 +1316,7 @@ func writeString(w io.Writer, s string) (n int, err error) {
 - switch x.(type)
 
 ```
-// 练习 7.117 - 7.18
+// 练习 7.17 - 7.18
 // TODO
 ```
 
@@ -1325,3 +1325,177 @@ func writeString(w io.Writer, s string) (n int, err error) {
 ### 7.15 一些建议
 
 - 接口只有当有两个或两个以上的具体类型必须以相同的方式进行处理时才需要
+
+## 8 Goroutines和Channels
+
+### 8.1 Goroutines
+
+- 主函数在一个单独的goroutine(main goroutine)中运行
+- go语句会使其语句中的函数在一个新创建的goroutine中运行
+- 主函数返回时，所有的goroutine都会被直接打断程序退出
+
+### 8.2 示例: 并发的Clock服务
+
+```
+// 练习 8.1 - 8.2
+// TODO
+```
+
+### 8.3 示例: 并发的Echo服务
+
+### 8.4 Channels
+
+- ch := make(chan int, 0)
+- ch <- x / x = <-ch / x, ok := <-ch(ok=false表示channels已经被关闭并且里面没有值可接收)
+- close(ch): send产生panic,但可以receive,没有数据产生零值
+
+#### 8.4.1 不带缓存的Channels
+
+- happens before
+- 并发: 不能确定这两个事件发生的先后顺序
+
+#### 8.4.2 串联的Channels（Pipeline）
+
+- range迭代channels
+- 所有的数据已经全部发送时才需要关闭channel
+	- fatal error: all goroutines are asleep - deadlock!
+	- range ch: 需要close(ch)
+
+#### 8.4.3 单方向的Channel
+
+#### 8.4.4 带缓存的Channels
+
+- 不要用带缓存的channel当作同一个goroutine中的队列
+	- 缺少sender或者receiver会导致阻塞
+- goroutines泄漏
+- 保持channel两端的平衡
+
+```
+// 练习 8.3
+// TODO
+```
+
+### 8.5 并发的循环
+
+- sync.WaitGroup: 多个goroutine操作时做到安全并且提供在其减为零之前一直等待的一种方法
+
+```
+// 并发不知道循环次数
+// makeThumbnails6 makes thumbnails for each file received from the channel.
+// It returns the number of bytes occupied by the files it creates.
+func makeThumbnails6(filenames <-chan string) int64 {
+    sizes := make(chan int64)
+    var wg sync.WaitGroup // number of working goroutines
+    for f := range filenames {
+        wg.Add(1)
+        // worker
+        go func(f string) {
+            defer wg.Done()
+            thumb, err := thumbnail.ImageFile(f)
+            if err != nil {
+                log.Println(err)
+                return
+            }
+            info, _ := os.Stat(thumb) // OK to ignore error
+            sizes <- info.Size()
+        }(f)
+    }
+
+    // closer
+    go func() {
+        wg.Wait()
+        close(sizes)
+    }()
+
+    var total int64
+    for size := range sizes {
+        total += size
+    }
+    return total
+}
+```
+
+```
+// 练习 8.4 - 8.5
+// TODO
+```
+
+### 8.6 示例: 并发的Web爬虫
+
+- 不要在主线程同时send&receive no cache channel,会阻塞
+- 限制并发
+	- cache chan
+	- 固定数量的常驻goroutine
+- 计数器终止程序
+	- 任务开始前+1
+
+```
+// 练习 8.6 - 8.7
+// TODO
+```
+
+### 8.7 基于select的多路复用
+
+- multiplex,否则无法同时接收多个channel
+- 如果多个case同时就绪时，select会随机地选择一个执行
+
+```
+select {
+case <-ch1:
+    // ...
+case x := <-ch2:
+    // ...use x...
+case ch3 <- y:
+    // ...
+default:
+    // ...
+}
+```
+
+- channel = nil, 发送和接收操作会永远阻塞
+
+```
+// 练习 8.8
+// TODO
+```
+
+### 8.8 示例: 并发的目录遍历
+
+```
+// 练习 8.9
+// TODO
+```
+
+### 8.9 并发的退出
+
+- select case理解为case后的语句不会被阻塞
+- Go语言并没有提供在一个goroutine中终止另一个goroutine的方法,这样会导致goroutine之间的共享变量落在未定义的状态上
+- 我们又无法在主函数退出的时候确认其已经释放了所有的资源
+	- panic
+
+```
+var done = make(chan struct{})
+
+func cancelled() bool {
+    select {
+    case <-done:
+        return true
+    default:
+        return false
+    }
+}
+```
+
+```
+// 练习 8.10 - 8.11
+// TODO
+```
+
+### 8.10 示例: 聊天服务
+
+- TODO
+
+```
+// 练习 8.12 - 8.15
+// TODO
+```
