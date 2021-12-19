@@ -1640,3 +1640,82 @@ func Icon(name string) image.Image {
 ```
 
 #### 9.8.4 Goroutine没有ID号
+
+## 10 包和工具
+
+### 10.1 包简介
+
+- 命名空间
+- 导出
+- 开头声明import,避免循环导入,编译后文件记录到处信息和依赖关系
+
+### 10.2 导入路径
+
+- 推荐命名: "github.com/go-sql-driver/mysql"
+
+### 10.3 包声明
+
+- 默认的包名就是包导入路径名的最后一段
+- _或.开头的源文件会被构建工具忽略
+- main _test name.version
+
+### 10.4 导入声明
+
+```
+import (
+    "crypto/rand"
+    mrand "math/rand" // alternative name mrand avoids conflict
+)
+```
+
+### 10.5 包的匿名导入
+
+- import _ "image/png"
+	- 抑制unused import编译错误
+	- 计算包级变量的初始化表达式和执行导入包的init初始化函数
+
+```
+// 练习 10.1 - 10.2
+// TODO
+```
+
+### 10.6 包和命名
+
+- 简短易理解
+- 单数(双数防止关键字冲突)
+
+### 10.7 工具
+
+#### 10.7.1 工作区结构
+
+- export GOPATH=...
+- GOPATH: 工作区目录
+	- src: 源代码
+	- pkg: 编译后的包的目标文件
+	- bin: 编译后的可执行程序
+- GOROOT: 安装目录
+
+#### 10.7.2 下载包
+
+- go.mod好像和老版本不一样了
+- export GO111MODULE=off
+
+```
+// 练习 10.3
+// TODO
+```
+
+#### 10.7.3 构建包
+
+#### 10.7.4 包文档
+
+#### 10.7.5 内部包
+
+- internal包只能被和internal目录有同一个父目录的包所导入
+
+#### 10.7.6 查询包
+
+```
+// 练习 10.3
+// TODO
+```
