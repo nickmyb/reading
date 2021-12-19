@@ -1499,3 +1499,144 @@ func cancelled() bool {
 // 练习 8.12 - 8.15
 // TODO
 ```
+
+## 9 基于共享变量的并发
+
+### 9.1 竞争条件
+
+- 并发安全类型: 所有可访问的方法和操作都是并发安全
+- 竞争条件: 多个goroutine交叉执行操作时没有给出正确的结果
+- 数据竞争: 有两个goroutine并发访问同一变量且至少其中的一个是写操作
+- 不要使用共享数据来通信；使用通信来共享数据
+- 避免在将变量传送到下一阶段后再去访问它，那么对这个变量的所有访问就是线性
+
+```
+// 练习 9.1
+// TODO
+```
+
+### 9.2 sync.Mutex互斥锁
+
+- sync.Mutex: 可理解为cache=1的chan
+- 被mutex所保护的变量是在mutex变量声明之后立刻声明
+
+```
+var (
+    mu      sync.Mutex // guards balance
+    balance int
+)
+```
+
+- defer Unlock
+- 重入锁会导致死锁
+
+### 9.3 sync.RWMutex读写锁
+
+### 9.4 内存同步
+
+- 在一个独立的goroutine中，每一个语句的执行顺序是可以被保证的。但是在不使用channel且不使用mutex这样的显式同步操作时，我们就没法保证事件在不同的goroutine中看到的执行顺序是一致的了
+- 可能的话将变量限定在goroutine内部
+- 对内存的写入一般会在每一个处理器中缓冲并在必要时一起flush到主存，主存同步前不可见
+- Mutex / channel相当于将缓存执行一次flush
+
+```
+var x, y int
+go func() {
+    x = 1 // A1
+    fmt.Print("y:", y, " ") // A2
+}()
+go func() {
+    y = 1                   // B1
+    fmt.Print("x:", x, " ") // B2
+}()
+```
+
+### 9.5 sync.Once惰性初始化
+
+- 需要使用前再初始化
+- 因为缺少显式的同步，编译器和CPU是可以随意地去更改访问内存的指令顺序，只要保证每一个goroutine自己的执行顺序一致
+
+```
+// version 1
+var mu sync.RWMutex // guards icons
+var icons map[string]image.Image
+// Concurrency-safe.
+func Icon(name string) image.Image {
+    mu.RLock()
+    if icons != nil {
+        icon := icons[name]
+        mu.RUnlock()
+        return icon
+    }
+    mu.RUnlock()
+
+    // acquire an exclusive lock
+    mu.Lock()
+    if icons == nil { // NOTE: must recheck for nil
+        loadIcons()
+    }
+    icon := icons[name]
+    mu.Unlock()
+    return icon
+}
+
+
+// version2
+var loadIconsOnce sync.Once
+var icons map[string]image.Image
+// Concurrency-safe.
+func Icon(name string) image.Image {
+    loadIconsOnce.Do(loadIcons)
+    return icons[name]
+}
+```
+
+```
+// 练习 9.2
+// TODO
+```
+
+### 9.6 竞争条件检测
+
+- -race
+
+### 9.7 示例: 并发的非阻塞缓存
+
+- TODO: 能看自己写不出来..
+
+```
+// 练习 9.3
+// TODO
+```
+
+### 9.8 Goroutines和线程
+
+#### 9.8.1 动态栈
+
+- thread: 2MB, goroutine: [2KB, 1GB]
+
+```
+// 练习 9.4
+// TODO
+```
+
+#### 9.8.2 Goroutine调度
+
+- m:n调度: n thread上调用m goroutine
+- 上下文切换
+
+```
+// 练习 9.5
+// TODO
+```
+
+#### 9.8.3 GOMAXPROCS
+
+- 有多少个操作系统的线程同时执行Go的代码
+
+```
+// 练习 9.6
+// TODO
+```
+
+#### 9.8.4 Goroutine没有ID号
