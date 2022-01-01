@@ -1148,7 +1148,7 @@ func name(parameter-list) (result-list) {
 	- 只有defer的最后一层调用会在最后被执行
 	- defer非最后一层调用会被先执行
 - defer执行顺序与声明顺序相反
-- defer对返回值的修改会影响最终的返回值
+- defer对返回值的修改会影响最终的返回值(如果defer中对明确的返回值标识符ret有修改,相当于最后追加return ret),否则defer不会影响返回值
 - 循环体中的defer用单独函数封装以便正常关闭
 
 ```
